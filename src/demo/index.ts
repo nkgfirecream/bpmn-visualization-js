@@ -17,11 +17,13 @@ import BpmnVisualization from '../component/BpmnVisualization';
 import { GlobalOptions, FitOptions, FitType, LoadOptions } from '../component/options';
 import { log, logStartup } from './helper';
 import { DropFileUserInterface } from './component/DropFileUserInterface';
+import CytoBpmnVisualization from '../component/CytoBpmnVisualization';
 
 export * from './helper';
 
 let bpmnVisualization: BpmnVisualization;
 let loadOptions: LoadOptions = {};
+let cytoBpmnVisualization: CytoBpmnVisualization;
 
 export function updateLoadOptions(fitOptions: FitOptions): void {
   log('Updating load options', fitOptions);
@@ -52,11 +54,24 @@ export function fit(fitOptions: FitOptions): void {
   log('Fit done with configuration', stringify(fitOptions));
 }
 
+function loadBpmnCyto(bpmn: string): void {
+  log('Loading bpmn....');
+  cytoBpmnVisualization.load(bpmn);
+  log('BPMN loaded');
+}
+
 // callback function for opening | dropping the file to be loaded
 function readAndLoadFile(f: File): void {
   const reader = new FileReader();
   reader.onload = () => {
     loadBpmn(reader.result as string);
+  };
+  reader.readAsText(f);
+}
+function readAndLoadFileCyto(f: File): void {
+  const reader = new FileReader();
+  reader.onload = () => {
+    loadBpmnCyto(reader.result as string);
   };
   reader.readAsText(f);
 }
@@ -69,6 +84,10 @@ function readAndLoadFile(f: File): void {
 export function handleFileSelect(evt: any): void {
   const f = evt.target.files[0];
   readAndLoadFile(f);
+}
+export function handleFileSelectCyto(evt: any): void {
+  const f = evt.target.files[0];
+  readAndLoadFileCyto(f);
 }
 
 function fetchBpmnContent(url: string): Promise<string> {
@@ -161,4 +180,11 @@ export function startBpmnVisualization(config: BpmnVisualizationDemoConfiguratio
     return;
   }
   log("No 'url to fetch BPMN content' provided");
+}
+
+export function initCytoBpmnVisualization(containerId: string): void {
+  const log = logStartup;
+
+  log(`Initializing BpmnVisualization with container '${containerId}'...`);
+  cytoBpmnVisualization = new CytoBpmnVisualization(containerId);
 }

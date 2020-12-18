@@ -100,7 +100,7 @@ export default class ShapeConfigurator {
         const cell = this.state.cell;
         const bpmnBaseClassName = computeBpmnBaseClassName(extractBpmnKindFromStyle(cell));
 
-        this.node.setAttribute('class', bpmnBaseClassName);
+        this.node.setAttribute('class', this.dialect === 'strictHtml' ? bpmnBaseClassName + '-label' : bpmnBaseClassName);
         this.node.setAttribute('data-bpmn-id', this.state.cell.id);
       }
       // END bpmn-visualization CUSTOMIZATION
