@@ -29,7 +29,7 @@ export { ShapeUtil };
 
 export * from './component/options';
 export * from './component/g6/StyleUtils';
-/*export * from './component/g6/shape/render';*/
+/*export * from './component/g6/shape';*/
 export * from './component/registry';
 
 // TODO restore 'alias export' to avoid any name clash with the demo code, when esLint parsing error is fixed: "Parsing error: Cannot read property 'map' of undefined"

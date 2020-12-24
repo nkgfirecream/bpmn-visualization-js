@@ -13,22 +13,135 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
-import StyleUtils, { StyleDefault } from '../StyleUtils';
-import { buildPaintParameter, IconPainterProvider, PaintParameter } from './render';
-import { ShapeBpmnMarkerKind, ShapeBpmnSubProcessKind } from '../../../model/bpmn/internal/shape';
-import BpmnCanvas from './render/BpmnCanvas';
-import { orderActivityMarkers } from './render/utils';
+import { ModelConfig } from '@antv/g6/lib/types';
+import { Group as GGroup } from '@antv/g-canvas';
+import { IShape } from '@antv/g-canvas/lib/interfaces';
+import G6 from '@antv/g6';
 
-function paintEnvelopeIcon(paintParameter: PaintParameter, isFilled: boolean): void {
-  IconPainterProvider.get().paintEnvelopeIcon({
-    ...paintParameter,
-    setIconOrigin: (canvas: BpmnCanvas) => canvas.setIconOriginToShapeTopLeft(),
-    ratioFromParent: 0.2,
-    icon: { ...paintParameter.icon, isFilled: isFilled },
-  });
+// function paintEnvelopeIcon(paintParameter: PaintParameter, isFilled: boolean): void {
+//   IconPainterProvider.get().paintEnvelopeIcon({
+//     ...paintParameter,
+//     setIconOrigin: (canvas: BpmnCanvas) => canvas.setIconOriginToShapeTopLeft(),
+//     ratioFromParent: 0.2,
+//     icon: { ...paintParameter.icon, isFilled: isFilled },
+//   });
+// }
+
+const ICON_MAP = {
+  a: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*0HC-SawWYUoAAAAAAAAAAABkARQnAQ',
+  b: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*sxK0RJ1UhNkAAAAAAAAAAABkARQnAQ',
+};
+
+export function drawTask(): (cfg?: ModelConfig, group?: GGroup) => IShape {
+  return (cfg, group): IShape => {
+    const color = cfg.error ? '#F4664A' : '#30BF78';
+    const r = 2;
+    const width = (cfg.size as number[])[0];
+    const height = (cfg.size as number[])[1];
+    const shape = group.addShape('rect', {
+      attrs: {
+        x: 0,
+        y: 0,
+        width,
+        height,
+        stroke: color,
+        radius: r,
+      },
+      name: 'main-box',
+      draggable: true,
+    });
+
+    group.addShape('rect', {
+      attrs: {
+        x: 0,
+        y: 0,
+        width,
+        height: height / 3,
+        fill: color,
+        radius: [r, r, 0, 0],
+      },
+      name: 'title-box',
+      draggable: true,
+    });
+
+    // left icon
+    group.addShape('image', {
+      attrs: {
+        x: 4,
+        y: 2,
+        height: 16,
+        width: 16,
+        cursor: 'pointer',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        img: ICON_MAP[cfg.nodeType || 'a'],
+      },
+      name: 'node-icon',
+    });
+
+    // title text
+    group.addShape('text', {
+      attrs: {
+        textBaseline: 'top',
+        y: 2,
+        x: 24,
+        lineHeight: 20,
+        text: cfg.title,
+        fill: '#fff',
+      },
+      name: 'title',
+    });
+
+    if (cfg.nodeLevel > 0) {
+      group.addShape('marker', {
+        attrs: {
+          x: 184,
+          y: 30,
+          r: 6,
+          cursor: 'pointer',
+          symbol: cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
+          stroke: '#666',
+          lineWidth: 1,
+        },
+        name: 'collapse-icon',
+      });
+    }
+
+    // The content list
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cfg.markers?.forEach((item, index) => {
+      // name text
+      group.addShape('text', {
+        attrs: {
+          textBaseline: 'top',
+          y: 25,
+          x: 24 + index * 60,
+          lineHeight: 20,
+          text: item.title,
+          fill: 'rgba(0,0,0, 0.4)',
+        },
+        name: `index-title-${index}`,
+      });
+
+      // value text
+      group.addShape('text', {
+        attrs: {
+          textBaseline: 'top',
+          y: 42,
+          x: 24 + index * 60,
+          lineHeight: 20,
+          text: item.value,
+          fill: '#595959',
+        },
+        name: `index-title-${index}`,
+      });
+    });
+    return shape;
+  };
 }
 
+/*
 export abstract class BaseActivityShape extends mxRectangleShape {
   protected iconPainter = IconPainterProvider.get();
 
