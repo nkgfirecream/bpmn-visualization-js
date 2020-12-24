@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
-import { BpmnMxGraph } from '../BpmnMxGraph';
+import { Graph } from '@antv/g6';
 
 export default class CoordinatesTranslator {
-  constructor(readonly graph: BpmnMxGraph) {}
+  constructor(readonly graph: Graph) {}
 
-  /!**
+  /*  /!**
    * Compute an absolute coordinate in relative coordinates in the parent cell referential.
    * @param parent the cell to use for the new coordinate referential
    * @param absoluteCoordinate
@@ -72,6 +71,6 @@ export default class CoordinatesTranslator {
     }
 
     return undefined;
-  }
+  }*/
 }
 */

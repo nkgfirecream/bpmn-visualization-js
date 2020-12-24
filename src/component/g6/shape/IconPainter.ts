@@ -16,17 +16,17 @@
 
 /*
 import BpmnCanvas from './BpmnCanvas';
-import StyleUtils from '../../StyleUtils';
 import { IconStyleConfiguration, ShapeConfiguration, Size } from './render-types';
 
 export interface PaintParameter {
-  c: mxAbstractCanvas2D;
+  // c: mxAbstractCanvas2D;
   shape: ShapeConfiguration;
   icon: IconStyleConfiguration;
   ratioFromParent?: number;
   setIconOrigin: (canvas: BpmnCanvas) => void;
 }
-
+export default class IconPainter {}
+/*
 export function buildPaintParameter(
   c: mxAbstractCanvas2D,
   x: number,
@@ -362,10 +362,20 @@ export default class IconPainter {
   }
 
   /!**
+<<<<<<< HEAD:src/component/g6/shape/IconPainter.ts
    * This icon is used by `parallel gateway` and 'event-based gateway'.
    *!/
   paintPlusCrossIcon(paintParameter: PaintParameter): void {
     this.drawCrossIcon(paintParameter).fillAndStroke();
+=======
+   * This icon is used by `parallel gateway`.
+   *!/
+  public paintPlusCrossIcon({ c, ratioFromParent, setIconOrigin, shape, icon }: PaintParameter): void {
+    const canvas = this.newBpmnCanvas({ c, ratioFromParent, setIconOrigin, shape, icon: { ...icon, isFilled: true } }, { height: 0.5, width: 0.5 });
+
+    IconPainter.drawCrossIcon(canvas);
+    canvas.fillAndStroke();
+>>>>>>> 41cb26c... Copy old mxGraph files conf:src/component/g6/node/render/IconPainter.ts
   }
 
   /!**

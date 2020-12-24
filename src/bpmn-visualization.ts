@@ -18,7 +18,7 @@
 // this is currently needed, otherwise module default exports are not exported in bundle js
 import BpmnVisualization from './component/BpmnVisualization';
 /*import IconPainter from './component/g6/shape/render/IconPainter';
-import StyleConfigurator from './component/mxgraph/config/StyleConfigurator';*/
+import StyleConfigurator from './component/g6/config/StyleConfigurator';*/
 import ShapeUtil from './model/bpmn/internal/shape/ShapeUtil';
 
 export { BpmnVisualization };
