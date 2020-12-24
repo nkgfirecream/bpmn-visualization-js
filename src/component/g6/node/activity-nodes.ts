@@ -130,8 +130,10 @@ export function drawTask(): (cfg?: BpmnNodeConfig, group?: GGroup) => IShape {
     // label text
     group.addShape('text', {
       attrs: {
-        /*        x: cfg.labelCfg.refX,
-        y: cfg.labelCfg.refY,*/
+        x: cfg.labelCfg.refX,
+        y: cfg.labelCfg.refY,
+        width: width - 20,
+        height: height - 20,
         text: cfg.label,
         textAlign: 'center',
         textBaseline: 'middle',
