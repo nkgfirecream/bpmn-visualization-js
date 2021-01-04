@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 import { ensureIsArray } from '../helpers/array-utils';
-import { BpmnMxGraph } from '../mxgraph/BpmnMxGraph';
 import { computeBpmnBaseClassName, extractBpmnKindFromStyle } from '../mxgraph/style-helper';
 import { FlowKind } from '../../model/bpmn/internal/edge/FlowKind';
 import { ShapeBpmnElementKind } from '../../model/bpmn/internal/shape';
 import { CssRegistry } from './css-registry';
 import { StyleIdentifier } from '../mxgraph/StyleUtils';
+import { Graph } from '@antv/g6';
+import { Item } from '@antv/g6/lib/types';
 
-export function newBpmnElementsRegistry(graph: BpmnMxGraph): BpmnElementsRegistry {
-  return new BpmnElementsRegistry(new BpmnModelRegistry(graph), new HtmlElementRegistry(new BpmnQuerySelectors(graph.container?.id)), new CssRegistry());
+export function newBpmnElementsRegistry(graph: Graph): BpmnElementsRegistry {
+  return new BpmnElementsRegistry(new BpmnModelRegistry(graph), new HtmlElementRegistry(new BpmnQuerySelectors(graph.getContainer()?.id)), new CssRegistry());
 }
 
 /**
@@ -131,28 +132,23 @@ export interface BpmnElement {
 
 // for now, we don't store the BpmnModel so we can use it, information are only available in the mxgraph model
 class BpmnModelRegistry {
-  constructor(private graph: BpmnMxGraph) {}
+  constructor(private graph: Graph) {}
 
   getBpmnSemantic(bpmnElementId: string): BpmnSemantic | undefined {
-    const mxCell = this.graph.getModel().getCell(bpmnElementId);
-    if (mxCell == null) {
+    const item: Item = this.graph.findById(bpmnElementId);
+    if (item == null) {
       return undefined;
     }
 
-    return { id: bpmnElementId, name: mxCell.value, isShape: mxCell.isVertex(), kind: extractBpmnKindFromStyle(mxCell) };
+    return { id: bpmnElementId, name: item.getModel().label as string, isShape: item.getType() === ('node' || 'combo'), kind: extractBpmnKindFromStyle(item) };
   }
 
   // TODO move to a dedicated class in charge of updating the mxgraph/rendered model
   refreshCell(bpmnElementId: string, cssRegistry: CssRegistry): void {
-    const mxCell = this.graph.getModel().getCell(bpmnElementId);
-    if (!mxCell) {
-      return;
-    }
-    const view = this.graph.getView();
-    const state = view.getState(mxCell);
-    state.style[StyleIdentifier.BPMN_STYLE_EXTRA_CSS_CLASSES] = cssRegistry.getClassNames(bpmnElementId).join(' ');
-    state.shape.apply(state);
-    state.shape.redraw();
+    const item = this.graph.findById(bpmnElementId);
+    // cssRegistry.getClassNames(bpmnElementId).join(' ')
+
+    this.graph.updateItem(bpmnElementId, { style: {} });
   }
 }
 

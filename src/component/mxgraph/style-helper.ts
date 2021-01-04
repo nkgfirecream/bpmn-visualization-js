@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import { Item } from '@antv/g6/lib/types';
+
 /**
  * Compute the all class names associated to a given bpmn element kind in an hyphen case form.
  *
@@ -41,8 +43,10 @@ export function computeBpmnBaseClassName(bpmnElementKind: string): string {
 
 /**
  * Extract the BPMN kind from the style of the cell. It is the string representation of the BPMN element kind i.e {@link ShapeBpmnElementKind} and {@link FlowKind}.
- * @param cell the mxCell whose style is checked.
+ * @param item the mxCell whose style is checked.
  */
-export function extractBpmnKindFromStyle(cell: mxCell): string {
-  return cell.style.split(';')[0];
+export function extractBpmnKindFromStyle(item: Item): string {
+  // return item.style.split(';')[0];
+  // item.getType()
+  return '';
 }
