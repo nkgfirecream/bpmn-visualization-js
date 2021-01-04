@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Item } from '@antv/g6/lib/types';
+import { Item } from '@antv/g6';
 
 /**
  * Compute the all class names associated to a given bpmn element kind in an hyphen case form.

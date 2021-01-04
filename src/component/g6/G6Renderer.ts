@@ -27,8 +27,7 @@ import ShapeBpmnElement, {
 import ShapeUtil from '../../model/bpmn/internal/shape/ShapeUtil';
 import { ShapeBpmnElementKind, ShapeBpmnEventBasedGatewayKind, ShapeBpmnEventKind, ShapeBpmnMarkerKind, ShapeBpmnSubProcessKind } from '../../model/bpmn/internal/shape';
 import { LoadOptions } from '../options';
-import { Graph } from '@antv/g6';
-import { EdgeConfig, GraphData, IPoint, NodeConfig } from '@antv/g6/lib/types';
+import { Graph, EdgeConfig, GraphData, IPoint, NodeConfig } from '@antv/g6';
 import { SequenceFlowKind } from '../../model/bpmn/internal/edge/SequenceFlowKind';
 import { AssociationDirectionKind } from '../../model/bpmn/internal/edge/AssociationDirectionKind';
 import { AssociationFlow, MessageFlow, SequenceFlow } from '../../model/bpmn/internal/edge/Flow';
