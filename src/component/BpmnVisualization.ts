@@ -18,7 +18,7 @@ import { FitOptions, GlobalOptions, LoadOptions } from './options';
 import { BpmnElementsRegistry } from './registry';
 import { newBpmnElementsRegistry } from './registry/bpmn-elements-registry';
 import { htmlElement } from './helpers/dom-utils';
-import G6, { Graph } from '@antv/g6';
+import { Graph } from '@antv/g6/es';
 import G6Configurator from './g6/config/G6Configurator';
 import { defaultG6Renderer } from './g6/G6Renderer';
 

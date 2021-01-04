@@ -18,7 +18,7 @@ import { computeBpmnBaseClassName, extractBpmnKindFromStyle } from '../g6/style-
 import { FlowKind } from '../../model/bpmn/internal/edge/FlowKind';
 import { ShapeBpmnElementKind } from '../../model/bpmn/internal/shape';
 import { CssRegistry } from './css-registry';
-import { Graph, Item } from '@antv/g6';
+import { Graph, Item } from '@antv/g6/es';
 
 export function newBpmnElementsRegistry(graph: Graph): BpmnElementsRegistry {
   return new BpmnElementsRegistry(new BpmnModelRegistry(graph), new HtmlElementRegistry(new BpmnQuerySelectors(graph.getContainer()?.id)), new CssRegistry());
