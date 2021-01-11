@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
 import { MarkerIdentifier } from '../StyleUtils';
 
 export default class MarkerConfigurator {
@@ -48,3 +49,4 @@ export default class MarkerConfigurator {
     mxMarker.addMarker(MarkerIdentifier.ARROW_DASH, createMarker);
   }
 }
+*/

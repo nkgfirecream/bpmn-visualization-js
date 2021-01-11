@@ -1,5 +1,3 @@
-import BpmnCanvas from './BpmnCanvas';
-
 /**
  * Copyright 2020 Bonitasoft S.A.
  *
@@ -15,7 +13,8 @@ import BpmnCanvas from './BpmnCanvas';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
+import BpmnCanvas from './BpmnCanvas';
 export interface ShapeConfiguration {
   x: number;
   y: number;
@@ -39,8 +38,9 @@ export interface Size {
 
 export interface IconConfiguration {
   originalSize: Size;
-  /** If `undefined`, no scaling will be done in {@link BpmnCanvas}. */
+  /!** If `undefined`, no scaling will be done in {@link BpmnCanvas}. *!/
   ratioFromShape?: number;
   style: IconStyleConfiguration;
   setIconOrigin: (canvas: BpmnCanvas) => void;
 }
+*/

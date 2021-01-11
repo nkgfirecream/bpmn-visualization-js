@@ -56,7 +56,7 @@ export enum StyleIdentifier {
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types */
 export default class StyleUtils {
-  public static getFillColor(style: any): string {
+  /* public static getFillColor(style: any): string {
     return mxUtils.getValue(style, mxConstants.STYLE_FILLCOLOR, StyleDefault.DEFAULT_FILL_COLOR);
   }
 
@@ -110,6 +110,6 @@ export default class StyleUtils {
 
   public static getBpmnIsParallelEventBasedGateway(style: any): boolean {
     return mxUtils.getValue(style, StyleIdentifier.BPMN_STYLE_EVENT_BASED_GATEWAY_KIND, ShapeBpmnEventBasedGatewayKind.Exclusive) == ShapeBpmnEventBasedGatewayKind.Parallel;
-  }
+  }*/
 }
 /* eslint-enable @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types */

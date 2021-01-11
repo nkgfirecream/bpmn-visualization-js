@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
 import { buildPaintParameter, IconPainterProvider } from './render';
 import StyleUtils from '../StyleUtils';
 import { MessageVisibleKind } from '../../../model/bpmn/internal/edge/MessageVisibleKind';
@@ -31,3 +32,4 @@ export class MessageFlowIconShape extends mxRectangleShape {
     this.iconPainter.paintEnvelopeIcon(paintParameter);
   }
 }
+*/

@@ -16,7 +16,7 @@
 import { ShapeBpmnElementKind } from '../../../model/bpmn/internal/shape';
 import G6 from '@antv/g6';
 import { IShape } from '@antv/g-canvas/lib/interfaces';
-import { StyleDefault } from '../../mxgraph/StyleUtils';
+import { StyleDefault } from '../StyleUtils';
 import { ModelConfig } from '@antv/g6/lib/types';
 import { Group as GGroup } from '@antv/g-canvas';
 

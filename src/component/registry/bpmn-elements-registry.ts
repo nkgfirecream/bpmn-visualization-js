@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 import { ensureIsArray } from '../helpers/array-utils';
-import { computeBpmnBaseClassName, extractBpmnKindFromStyle } from '../mxgraph/style-helper';
+import { computeBpmnBaseClassName, extractBpmnKindFromStyle } from '../g6/style-helper';
 import { FlowKind } from '../../model/bpmn/internal/edge/FlowKind';
 import { ShapeBpmnElementKind } from '../../model/bpmn/internal/shape';
 import { CssRegistry } from './css-registry';
-import { StyleIdentifier } from '../mxgraph/StyleUtils';
 import { Graph } from '@antv/g6';
 import { Item } from '@antv/g6/lib/types';
 

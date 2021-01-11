@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
 import Shape from '../../model/bpmn/internal/shape/Shape';
 import Edge from '../../model/bpmn/internal/edge/Edge';
 import BpmnModel from '../../model/bpmn/internal/BpmnModel';
@@ -20,7 +21,7 @@ import ShapeBpmnElement, { ShapeBpmnSubProcess } from '../../model/bpmn/internal
 import Waypoint from '../../model/bpmn/internal/edge/Waypoint';
 import Bounds from '../../model/bpmn/internal/Bounds';
 import ShapeUtil from '../../model/bpmn/internal/shape/ShapeUtil';
-import CoordinatesTranslator from './renderer/CoordinatesTranslator';
+import CoordinatesTranslator from '../g6/renderer/CoordinatesTranslator';
 import StyleConfigurator from './config/StyleConfigurator';
 import { MessageFlow } from '../../model/bpmn/internal/edge/Flow';
 import { MessageVisibleKind } from '../../model/bpmn/internal/edge/MessageVisibleKind';
@@ -195,3 +196,4 @@ interface DisplayedModel {
   pools: Shape[];
   subprocesses: Shape[];
 }
+*/
