@@ -115,7 +115,7 @@ export default class NodeConfigurator {
     // artifacts
     G6.registerNode(ShapeBpmnElementKind.TEXT_ANNOTATION, { drawShape: drawTextAnnotation() }, 'single-node');
   }
-  
+
   /*
 private initMxShapePrototype(isFF: boolean): void {
   // The following is copied from the mxgraph mxShape implementation then converted to TypeScript and enriched for bpmn-visualization
