@@ -115,4 +115,68 @@ export default class NodeConfigurator {
     // artifacts
     G6.registerNode(ShapeBpmnElementKind.TEXT_ANNOTATION, { drawShape: drawTextAnnotation() }, 'single-node');
   }
+  
+  /*
+private initMxShapePrototype(isFF: boolean): void {
+  // The following is copied from the mxgraph mxShape implementation then converted to TypeScript and enriched for bpmn-visualization
+  // It is needed for adding the custom attributes that permits identification of the BPMN elements in the DOM
+  mxShape.prototype.createSvgCanvas = function () {
+    const canvas = new mxSvgCanvas2D(this.node, false);
+    canvas.strokeTolerance = this.pointerEvents ? this.svgStrokeTolerance : 0;
+    canvas.pointerEventsValue = this.svgPointerEvents;
+    // TODO existed in mxgraph-type-definitions@1.0.2, no more in mxgraph-type-definitions@1.0.3
+    // this is probably because mxSvgCanvas2D definition matches mxgraph@4.1.1 and we are using  mxgraph@4.1.0
+    ((canvas as unknown) as mxgraph.mxSvgCanvas2D).blockImagePointerEvents = isFF;
+    const off = this.getSvgScreenOffset();
+
+    if (off != 0) {
+      this.node.setAttribute('transform', 'translate(' + off + ',' + off + ')');
+    } else {
+      this.node.removeAttribute('transform');
+    }
+
+      // TODO existed in mxgraph-type-definitions@1.0.2, no more in mxgraph-type-definitions@1.0.3
+      // this is probably because mxSvgCanvas2D definition matches mxgraph@4.1.1 and we are using  mxgraph@4.1.0
+      ((canvas as unknown) as mxgraph.mxSvgCanvas2D).blockImagePointerEvents = isFF;
+      const off = this.getSvgScreenOffset();
+
+      if (off != 0) {
+        this.node.setAttribute('transform', 'translate(' + off + ',' + off + ')');
+      } else {
+        this.node.removeAttribute('transform');
+      }
+
+      // START bpmn-visualization CUSTOMIZATION
+      // add attributes to be able to identify elements in DOM
+      if (this.state && this.state.cell) {
+        // 'this.state.style' = the style definition associated with the cell
+        // 'this.state.cell.style' = the style applied to the cell: 1st element: style name = bpmn shape name
+        const cell = this.state.cell;
+        // dialect = strictHtml is set means that current node holds an html label
+        let allBpmnClassNames = computeAllBpmnClassNames(extractBpmnKindFromStyle(cell), this.dialect === mxConstants.DIALECT_STRICTHTML);
+        // TODO change the computeAllBpmnClassNames implementation to return an array and manage the string join here instead
+        const extraCssClasses =  this.state.style[StyleIdentifier.BPMN_STYLE_EXTRA_CSS_CLASSES];
+        if (extraCssClasses) {
+          allBpmnClassNames = allBpmnClassNames.concat(' ').concat(extraCssClasses);
+        }
+
+      this.node.setAttribute('class', allBpmnClassNames);
+      this.node.setAttribute('data-bpmn-id', this.state.cell.id);
+    }
+    // END bpmn-visualization CUSTOMIZATION
+    canvas.minStrokeWidth = this.minSvgStrokeWidth;
+
+    if (!this.antiAlias) {
+      // Rounds all numbers in the SVG output to integers
+      canvas.format = function (value: string) {
+        return Math.round(parseFloat(value));
+      };
+    }
+
+    return canvas;
+  };
 }
+*/
+}
+
+
